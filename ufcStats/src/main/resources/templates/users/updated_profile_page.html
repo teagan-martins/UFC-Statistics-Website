@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UFC Fighters</title>
+    <link href="/css/style.css" rel="stylesheet">
+    <script src="../js/script.js"></script>
+</head>
+<body>
+<main class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="wrapper">
+                <div class="search_box">
+                    <a class="semi-transparent-button" href="/profile" th:text="${user.login}"></a>
+                    <a href="/home"><img alt="UFC Fighters" width = "213" height="73" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/UFC_logo.svg/2560px-UFC_logo.svg.png" class="logo" onmouseover="hover(this);" onmouseout="unhover(this);"></a>
+                    <form th:action="@{/search}" method="get">
+                        <input type="text" id="searchInput" name="name" placeholder="Search...">
+                        <i class = "fas fa-search"></i>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<h1 th:text="${user.login}" class="left"></h1>
+<h1 th:text="${user.password}" class="left"></h1>
+<h1 th:text="${user.email}" class="left"></h1>
+<h1 class="left">Favourite Fighter:</h1>
+<p th:text="${favouriteFighter.first + ' ' + favouriteFighter.last}" class="left"></p>
+<h3 class="left">Your favourite fighter was updated!</h3>
+</main>
+</body>
+</html>

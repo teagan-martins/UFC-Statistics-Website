@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UFC Fighters</title>
+    <link href="/css/style.css" rel="stylesheet">
+    <script src="../js/script.js"></script>
+</head>
+<body>
+<main class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="wrapper">
+                <div class="search_box">
+                    <a class="semi-transparent-button" href="/profile" th:text="${user.login}"></a>
+                    <a href="/home"><img alt="UFC Fighters" width = "213" height="73" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/UFC_logo.svg/2560px-UFC_logo.svg.png" class="logo" onmouseover="hover(this);" onmouseout="unhover(this);"></a>
+                    <form th:action="@{/search}" method="get">
+                        <input type="text" id="searchInput" name="name" placeholder="Search...">
+                        <i class="fas fa-search"></i>
+                    </form>
+                </div>
+            </div>
+            <ul class="side">
+                <li th:each="fighter : ${fighters}">
+                    <form th:action="@{/makeFavorite/{fighterId}(fighterId=${fighter.id})}" method="post">
+                        <a th:href="@{/fighterInfo(fighterId=${fighter.id})}">
+                            <h3 th:text="${fighter.first + ' ' + fighter.last}"></h3>
+                        </a>
+                        <p>Nickname: <span th:text="${fighter.nickname}"></span></p>
+                        <p>Height: <span th:text="${fighter.height}"></span></p>
+                        <p>Weight: <span th:text="${fighter.weight}"></span></p>
+                        <p>Reach: <span th:text="${fighter.reach}"></span></p>
+                        <p>Stance: <span th:text="${fighter.stance}"></span></p>
+                        <p>Wins: <span th:text="${fighter.wins}"></span></p>
+                        <p>Losses: <span th:text="${fighter.losses}"></span></p>
+                        <p>Draws: <span th:text="${fighter.draws}"></span></p>
+                        <p>Belt: <span th:text="${fighter.belt}"></span></p>
+                        <input type="submit" value="Make Favourite Fighter">
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+</main>
+</body>
+</html>
